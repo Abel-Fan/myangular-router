@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../public/javascripts/angular/angular.min.js"></script>
+</head>
+<body ng-app="myapp">
+<!--组件  react->组件  -->
+<div ng-controller="ctrl">
+    <div abc >sdf</div>
+    <div abc >sdf</div>
+    <div abc >sdf</div>
+</div>
+
+<!--<abc>asdf</abc>             &lt;!&ndash;不常用&ndash;&gt;-->
+<!--<div class="abc">asdf</div> &lt;!&ndash;不常用&ndash;&gt;-->
+<!---->
+</body>
+<script>
+    /*内部采用ajax  向服务器发起请求  不能跨域   jsonp  服务器代理*/
+    angular.module("myapp",[])
+            .directive("abc",function(){   /*directive里的字段  */
+                return {
+                    restrict:"ECMA",/*ECMA  "A" 属性*  "E"标签元素   必须大写*/
+//                    templateUrl:"demo.html",
+                    template:"<div>{{abc}}<div>",
+//                    replace:true,
+                    transclude:true,
+                    /*template:"<div>div</div>"templateUrl:如果特别复杂*/
+                    link:function($scope,b,c){
+                        console.log($scope);
+                        $scope.abc="指令中的$scope"
+                    }
+
+                }
+            }).controller("ctrl",function($scope){
+        $scope.abc="我是abc"
+    })
+</script>
+</html>

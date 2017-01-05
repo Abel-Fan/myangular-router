@@ -1,0 +1,9 @@
+<div ng-transclude></div>
+<ul>
+    <li ng-repeat="item in data">
+        <span ng-bind="item.name"  ng-click="change($index)"></span>
+        <ul  ng-show="$index==aa">
+            <li ng-repeat="item1 in item.son">{{item1.name}}</li>
+        </ul>
+    </li>
+</ul>

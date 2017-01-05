@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../public/javascripts/angular/angular.min.js"></script>
+</head>
+<body ng-app="myapp">
+<!--组件  react->组件  -->
+<div ng-controller="ctrl">
+    <hr>
+    <div abc >{{abc}}</div>
+    <hr>
+    <div abc >{{abc}}</div>
+    <hr>
+    <div abc >{{abc}}</div>
+    <hr>
+    <div abc >{{abc}}</div>
+</div>
+
+<!--<abc>asdf</abc>             &lt;!&ndash;不常用&ndash;&gt;-->
+<!--<div class="abc">asdf</div> &lt;!&ndash;不常用&ndash;&gt;-->
+<!---->
+</body>
+<script>
+    /*内部采用ajax  向服务器发起请求  不能跨域   jsonp  服务器代理*/
+    angular.module("myapp",[])
+            .directive("abc",function(){
+                return {
+                    restrict:"ECMA",/* "ECMA"四个都可以识别  "A" 属性*  "E"标签元素 "C"类名  必须大写*/
+//                    templateUrl:"demo.html",template:"<div>123</div>"
+                    templateUrl:"demo2.html",
+//                    replace:true,
+                    transclude:true,
+                    /*template:"<div>div</div>"templateUrl:如果特别复杂*/
+                    link:function($scope,b,c){
+                        $scope.data=[
+                            {name:"111",son:[
+                                {name:"1-1"},
+                                {name:"1-2"},
+                                {name:"1-3"},
+                                {name:"1-4"}
+                            ]},
+                            {name:"222",son:[
+                                {name:"2-1"},
+                                {name:"2-2"},
+                                {name:"2-3"},
+                                {name:"2-4"}
+                            ]},{name:"333",son:[
+                                {name:"3-1"},
+                                {name:"3-2"},
+                                {name:"3-3"},
+                                {name:"3-4"}
+                            ]}
+                        ];
+                        $scope.aa=0;
+                        $scope.change = function(id){
+                            $scope.aa=id;
+                        }
+                    }
+
+                }
+            }).controller("ctrl",function($scope){
+        $scope.abc="my menu"
+    })
+</script>
+</html>
